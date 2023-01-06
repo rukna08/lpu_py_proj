@@ -14,6 +14,8 @@ game_matrix = np.array(
 
 shape_index = 0
 
+game_is_over = False
+
 def push_data_to_game_matrix(i, j):
     if game_matrix[i][j] == 0:
         if (shape_index) % 2 == 0:
@@ -44,6 +46,8 @@ def draw_shape(surface, radius, coord):
     shape_index += 1
 
 def check_game_win_condition():
+    global game_is_over
+
     circle_wins = False
     cross_wins = False
     
@@ -56,6 +60,7 @@ def check_game_win_condition():
     or (game_matrix[0][2] == 1 and game_matrix[1][1] == 1 and game_matrix[2][0] == 1)
     or (game_matrix[0][0] == 1 and game_matrix[1][1] == 1 and game_matrix[2][2] == 1)):
         circle_wins = True
+        game_is_over = True
 
     if((game_matrix[0][0] == 2 and game_matrix[0][1] == 2 and game_matrix[0][2]) == 2
     or (game_matrix[1][0] == 2 and game_matrix[1][1] == 2 and game_matrix[1][2]) == 2
@@ -66,6 +71,7 @@ def check_game_win_condition():
     or (game_matrix[0][2] == 2 and game_matrix[1][1] == 2 and game_matrix[2][0] == 2)
     or (game_matrix[0][0] == 2 and game_matrix[1][1] == 2 and game_matrix[2][2] == 2)):
         cross_wins = True
+        game_is_over = True
     
     if circle_wins == True:
         print("circle wins")
@@ -93,102 +99,106 @@ running = True
 
 while running:
 
-    # vertical lines
-    pygame.draw.line(surface, black_color, ((width / 2) - offset, 0), ((width / 2) - offset, height), 1)
-    pygame.draw.line(surface, black_color, ((width / 2) + offset, 0), ((width / 2) + offset, height), 1)
+    if not game_is_over:
+        # vertical lines
+        pygame.draw.line(surface, black_color, ((width / 2) - offset, 0), ((width / 2) - offset, height), 1)
+        pygame.draw.line(surface, black_color, ((width / 2) + offset, 0), ((width / 2) + offset, height), 1)
 
-    # horizontal lines
-    pygame.draw.line(surface, black_color, (0, (height / 2) - offset), (width, (height / 2) - offset), 1)
-    pygame.draw.line(surface, black_color, (0, (height / 2) + offset), (width, (height / 2) + offset), 1)
+        # horizontal lines
+        pygame.draw.line(surface, black_color, (0, (height / 2) - offset), (width, (height / 2) - offset), 1)
+        pygame.draw.line(surface, black_color, (0, (height / 2) + offset), (width, (height / 2) + offset), 1)
 
     pygame.display.flip()
     
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
 
-            # box 0
-            if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
-                if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
-                    print("Inside box 0")
+        if not game_is_over:
+            if event.type == pygame.MOUSEBUTTONDOWN:
 
-                    # 1 = O
-                    # 2 = X
+                # box 0
+                if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
+                    if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
+                        print("Inside box 0")
 
-                    push_data_to_game_matrix(0, 0)
+                        # 1 = O
+                        # 2 = X
 
-                    draw_shape(surface, 22, (50, 50))
+                        push_data_to_game_matrix(0, 0)
+                    
+                        draw_shape(surface, 22, (50, 50))
 
-            # box 1
-            if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
-                if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
-                    print("Inside box 1")
+                # box 1
+                if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
+                    if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
+                        print("Inside box 1")
 
-                    push_data_to_game_matrix(0, 1)
+                        push_data_to_game_matrix(0, 1)
 
-                    draw_shape(surface, 22, (150, 50))
+                        draw_shape(surface, 22, (150, 50))
 
-            # box 2
-            if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
-                if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
-                    print("Inside box 2")
+                # box 2
+                if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
+                    if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
+                        print("Inside box 2")
 
-                    push_data_to_game_matrix(0, 2)
+                        push_data_to_game_matrix(0, 2)
 
-                    draw_shape(surface, 22, (250, 50))
+                        draw_shape(surface, 22, (250, 50))
 
-            # box 3
-            if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
-                if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
-                    print("Inside box 3")
+                # box 3
+                if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
+                    if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
+                        print("Inside box 3")
 
-                    push_data_to_game_matrix(1, 0)
+                        push_data_to_game_matrix(1, 0)
 
-                    draw_shape(surface, 22, (50, 150))
-            # box 4
-            if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
-                if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
-                    print("Inside box 4")
+                        draw_shape(surface, 22, (50, 150))
+                # box 4
+                if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
+                    if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
+                        print("Inside box 4")
 
-                    push_data_to_game_matrix(1, 1)
+                        push_data_to_game_matrix(1, 1)
 
-                    draw_shape(surface, 22, (150, 150))
-            # box 5
-            if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
-                if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
-                    print("Inside box 5")
+                        draw_shape(surface, 22, (150, 150))
+                # box 5
+                if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
+                    if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
+                        print("Inside box 5")
 
-                    push_data_to_game_matrix(1, 2)
+                        push_data_to_game_matrix(1, 2)
 
-                    draw_shape(surface, 22, (250, 150))
+                        draw_shape(surface, 22, (250, 150))
 
-            # box 6
-            if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
-                if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
-                    print("Inside box 6")
+                # box 6
+                if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
+                    if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
+                        print("Inside box 6")
 
-                    push_data_to_game_matrix(2, 0)
+                        push_data_to_game_matrix(2, 0)
 
-                    draw_shape(surface, 22, (50, 250))
-            # box 7
-            if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
-                if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
-                    print("Inside box 7")
+                        draw_shape(surface, 22, (50, 250))
+                # box 7
+                if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
+                    if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
+                        print("Inside box 7")
 
-                    push_data_to_game_matrix(2, 1)
+                        push_data_to_game_matrix(2, 1)
 
-                    draw_shape(surface, 22, (150, 250))
-            # box 8
-            if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
-                if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
-                    print("Inside box 8")
+                        draw_shape(surface, 22, (150, 250))
+                # box 8
+                if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
+                    if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
+                        print("Inside box 8")
 
-                    push_data_to_game_matrix(2, 2)
+                        push_data_to_game_matrix(2, 2)
 
-                    draw_shape(surface, 22, (250, 250))
+                        draw_shape(surface, 22, (250, 250))
 
-            check_game_win_condition()
+                check_game_win_condition()
 
-            
+        if game_is_over:
+            surface.fill(background_color)
 
         if event.type == pygame.QUIT:
             running = False
