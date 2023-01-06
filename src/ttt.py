@@ -223,7 +223,7 @@ while running:
 
         if game_is_over and not is_player_pranked:
             surface.fill(background_color)
-            game_font.render_to(surface, (35, 140), "#hardcoding4lyfbitch", (0, 0, 0))
+            game_font.render_to(surface, (35, 140), "#hardcode4lyfbitch", (0, 0, 0))
 
             if not is_player_pranked:
                 if circle_wins == True:
