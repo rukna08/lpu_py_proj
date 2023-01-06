@@ -88,8 +88,6 @@ while running:
 
                     draw_shape(surface, 22, (50, 50))
 
-
-
             # box 1
             if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
                 if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
@@ -157,6 +155,19 @@ while running:
                     push_data_to_game_matrix(2, 2)
 
                     draw_shape(surface, 22, (250, 250))
+
+            circle_wins = True
+
+            for i in range(3):
+                for j in range(3):
+                    
+                    # diagonal check
+                    if game_matrix[i][j] != 1 and i == j:
+                        circle_wins = False
+                        break
+                    
+            if circle_wins == True:
+                print("circle_wins")
 
         if event.type == pygame.QUIT:
             running = False
