@@ -139,22 +139,22 @@ input_textbox = Entry(frame, text = input_data, bd = 0, font=('Roboto 50'))
 input_textbox.pack()
 input_textbox.focus_set()
 
-add_button = Button(root, text = "+", command = add)
+add_button = Button(root, text = "+", command = add, font=('Consolas 30'))
 add_button.place(x = 0, y = 300, width = 50, height = 50)
 
-equal_button = Button(root, text = "=", command = equal)
+equal_button = Button(root, text = "=", command = equal, font=('Consolas 30'))
 equal_button.place(x = 0, y = 350, width = 50, height = 50)
 
-clear_button = Button(root, text = "Clear", command = clear)
+clear_button = Button(root, text = "Clear", command = clear, font=('Consolas 10'))
 clear_button.place(x = 100, y = 350, width = 50, height = 50)
 
-sub_button = Button(root, text = "-", command = sub)
+sub_button = Button(root, text = "-", command = sub, font=('Consolas 30'))
 sub_button.place(x = 0, y = 250, width = 50, height = 50)
 
-mult_button = Button(root, text = "*", command = mult)
+mult_button = Button(root, text = "*", command = mult, font=('Consolas 30'))
 mult_button.place(x = 0, y = 200, width = 50, height = 50)
 
-div_button = Button(root, text = "/", command = div)
+div_button = Button(root, text = "/", command = div, font=('Consolas 30'))
 div_button.place(x = 0, y = 150, width = 50, height = 50)
 
 root.mainloop()
