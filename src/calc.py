@@ -25,15 +25,63 @@ def add():
     global last_operator
 
     result += float(input_data.get())
+
+    print("Result: {}".format(result))
     
     input_textbox.delete(0, END)
     
     last_operator = "+"
 
-def equal():
-    if last_operator == "+":
-        global result
+def sub():
+    global result
+    global last_operator
 
+    if(last_operator == ""):
+        result = float(input_data.get())
+    else:
+        result -= float(input_data.get())
+
+    print("Result: {}".format(result))
+    
+    input_textbox.delete(0, END)
+    
+    last_operator = "-"
+
+def mult():
+    global result
+    global last_operator
+
+    if(last_operator == ""):
+        result = float(input_data.get())
+    else:
+        result *= float(input_data.get())
+
+    print("Result: {}".format(result))
+    
+    input_textbox.delete(0, END)
+    
+    last_operator = "*"
+
+def div():
+    global result
+    global last_operator
+
+    if(last_operator == ""):
+        result = float(input_data.get())
+    else:
+        result /= float(input_data.get())
+    
+    print("Result: {}".format(result))
+
+    input_textbox.delete(0, END)
+    
+    last_operator = "/"
+
+def equal():
+    global result
+    global last_operator
+
+    if last_operator == "+":
         result += float(input_data.get())
         
         input_textbox.delete(0, END)
@@ -41,6 +89,41 @@ def equal():
         input_textbox.insert(0, str(result))
 
         result = 0
+
+        print("Last operator: {}".format(last_operator))
+        print("Result: {}".format(result))
+    elif last_operator == "-":
+        result -= float(input_data.get())
+        
+        input_textbox.delete(0, END)
+        
+        input_textbox.insert(0, str(result))
+
+        result = 0
+        print("Last operator: {}".format(last_operator))
+        print("Result: {}".format(result))
+    elif last_operator == "*":
+        result *= float(input_data.get())
+        
+        input_textbox.delete(0, END)
+        
+        input_textbox.insert(0, str(result))
+
+        result = 0
+        print("Last operator: {}".format(last_operator))
+        print("Result: {}".format(result))
+    elif last_operator == "/":
+        result /= float(input_data.get())
+        
+        input_textbox.delete(0, END)
+        
+        input_textbox.insert(0, str(result))
+
+        result = 0
+        print("Last operator: {}".format(last_operator))
+        print("Result: {}".format(result))
+    
+    last_operator = ""
 
 def clear():
     input_textbox.delete(0, END)
@@ -56,12 +139,22 @@ input_textbox = Entry(frame, text = input_data, bd = 0, font=('Roboto 50'))
 input_textbox.pack()
 input_textbox.focus_set()
 
-calculate_button = Button(root, text = "+", command = add)
-calculate_button.place(x = 0, y = 300, width = 50, height = 50)
+add_button = Button(root, text = "+", command = add)
+add_button.place(x = 0, y = 300, width = 50, height = 50)
 
 equal_button = Button(root, text = "=", command = equal)
 equal_button.place(x = 0, y = 350, width = 50, height = 50)
 
-print(input_data)
+clear_button = Button(root, text = "Clear", command = clear)
+clear_button.place(x = 100, y = 350, width = 50, height = 50)
+
+sub_button = Button(root, text = "-", command = sub)
+sub_button.place(x = 0, y = 250, width = 50, height = 50)
+
+mult_button = Button(root, text = "*", command = mult)
+mult_button.place(x = 0, y = 200, width = 50, height = 50)
+
+div_button = Button(root, text = "/", command = div)
+div_button.place(x = 0, y = 150, width = 50, height = 50)
 
 root.mainloop()
