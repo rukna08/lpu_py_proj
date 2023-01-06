@@ -43,6 +43,72 @@ def draw_shape(surface, radius, coord):
     
     shape_index += 1
 
+def check_game_win_condition():
+    circle_wins = True
+    cross_wins = True
+
+    # diagonal check
+    for i in range(3):
+        for j in range(3):
+            if game_matrix[i][j] != 1 and i == j:
+                circle_wins = False
+                break
+            
+    if circle_wins == True:
+        print("circle wins")
+
+    for i in range(3):
+        for j in range(3):
+            if game_matrix[i][j] != 2 and i == j:
+                cross_wins = False
+                break
+
+    if cross_wins == True:
+        print("cross wins")
+
+    circle_wins = False
+    cross_wins = False
+
+    # reverse diagonal check
+    if(game_matrix[0][2] == 1 and game_matrix[1][1] == 1 and game_matrix[2][0] == 1):
+        circle_wins = True
+
+    elif(game_matrix[0][2] == 2 and game_matrix[1][1] == 2 and game_matrix[2][0] == 2):
+        cross_wins = True
+
+    if circle_wins == True:
+        print("circle wins")
+    elif cross_wins == True:
+        print("cross wins")
+
+
+    circle_wins = False
+    cross_wins = False
+    
+    if((game_matrix[0][0] == 1 and game_matrix[0][1] == 1 and game_matrix[0][2] == 1)
+    or (game_matrix[1][0] == 1 and game_matrix[1][1] == 1 and game_matrix[1][2] == 1)
+    or (game_matrix[2][0] == 1 and game_matrix[2][1] == 1 and game_matrix[2][2] == 1)
+    or (game_matrix[0][0] == 1 and game_matrix[1][0] == 1 and game_matrix[2][0] == 1)
+    or (game_matrix[0][1] == 1 and game_matrix[1][1] == 1 and game_matrix[2][1] == 1)
+    or (game_matrix[0][2] == 1 and game_matrix[1][2] == 1 and game_matrix[2][2] == 1)):
+        circle_wins = True
+
+    if((game_matrix[0][0] == 2 and game_matrix[0][1] == 2 and game_matrix[0][2]) == 2
+    or (game_matrix[1][0] == 2 and game_matrix[1][1] == 2 and game_matrix[1][2]) == 2
+    or (game_matrix[2][0] == 2 and game_matrix[2][1] == 2 and game_matrix[2][2]) == 2
+    or (game_matrix[0][0] == 2 and game_matrix[1][0] == 2 and game_matrix[2][0]) == 2
+    or (game_matrix[0][1] == 2 and game_matrix[1][1] == 2 and game_matrix[2][1]) == 2
+    or (game_matrix[0][2] == 2 and game_matrix[1][2] == 2 and game_matrix[2][2]) == 2):
+        cross_wins = True
+    
+    if circle_wins == True:
+        print("circle wins")
+    elif cross_wins == True:
+        print("cross wins")
+
+        
+
+
 background_color = (255, 255, 255)
 
 black_color = (0, 0, 0)
@@ -156,18 +222,9 @@ while running:
 
                     draw_shape(surface, 22, (250, 250))
 
-            circle_wins = True
+            check_game_win_condition()
 
-            for i in range(3):
-                for j in range(3):
-                    
-                    # diagonal check
-                    if game_matrix[i][j] != 1 and i == j:
-                        circle_wins = False
-                        break
-                    
-            if circle_wins == True:
-                print("circle_wins")
+            
 
         if event.type == pygame.QUIT:
             running = False
