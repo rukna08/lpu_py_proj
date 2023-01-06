@@ -246,7 +246,7 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 is_player_pranked = True
                 surface.fill(black_color)
-                game_font.render_to(surface, (30, 100), "You have been pranked.", (255, 0, 255))
+                game_font.render_to(surface, (30, 100), "You have been pranked! ;}", (255, 0, 255))
                 game_font.render_to(surface, (60, 140), "Press q to close.", (255, 0, 255))
                 
                 if is_sigma_sfx_playing == False:
