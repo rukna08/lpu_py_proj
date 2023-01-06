@@ -1,8 +1,11 @@
 import pygame
+import pygame.freetype
 
 from pygame import gfxdraw
 
 import numpy as np
+
+pygame.init()
 
 game_matrix = np.array(
     [
@@ -14,7 +17,13 @@ game_matrix = np.array(
 
 shape_index = 0
 
+circle_wins = False
+
+cross_wins = False
+
 game_is_over = False
+
+game_font = pygame.freetype.Font("Roboto-Regular.ttf", 24)
 
 def push_data_to_game_matrix(i, j):
     if game_matrix[i][j] == 0:
@@ -48,8 +57,8 @@ def draw_shape(surface, radius, coord):
 def check_game_win_condition():
     global game_is_over
 
-    circle_wins = False
-    cross_wins = False
+    global circle_wins
+    global cross_wins
     
     if((game_matrix[0][0] == 1 and game_matrix[0][1] == 1 and game_matrix[0][2] == 1)
     or (game_matrix[1][0] == 1 and game_matrix[1][1] == 1 and game_matrix[1][2] == 1)
@@ -199,6 +208,28 @@ while running:
 
         if game_is_over:
             surface.fill(background_color)
+            game_font.render_to(surface, (35, 140), "#hardcoding4lyfbitch", (0, 0, 0))
+
+            if circle_wins == True:
+                game_font.render_to(surface, (75, 100), "(Circle) O won!", (0, 255, 0))
+            else:
+                game_font.render_to(surface, (75, 100), "(Cross) X won!", (0, 255, 0))
+
+            game_font.render_to(surface, (75, 70), "Escape to quit.", (255, 0, 0))
 
         if event.type == pygame.QUIT:
             running = False
+            exit()
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                # surface.fill(black_color)
+                # game_font.render_to(surface, (0, 70), "You have been pranked,", (255, 0, 255))
+                # game_font.render_to(surface, (0, 90), " press q to close.", (255, 0, 255))
+                pygame.quit()
+
+            # if event.key == pygame.K_q:
+            #     pygame.quit()
+
+
+
