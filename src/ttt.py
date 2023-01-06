@@ -32,6 +32,8 @@ game_is_over = False
 
 is_snoop_dog_sfx_playing = False
 
+is_sigma_sfx_playing = False
+
 game_font = pygame.freetype.Font("Roboto-Regular.ttf", 24)
 
 def push_data_to_game_matrix(i, j):
@@ -239,13 +241,16 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                # surface.fill(black_color)
-                # game_font.render_to(surface, (0, 70), "You have been pranked,", (255, 0, 255))
-                # game_font.render_to(surface, (0, 90), " press q to close.", (255, 0, 255))
+                surface.fill(black_color)
+                game_font.render_to(surface, (0, 70), "You have been pranked,", (255, 0, 255))
+                game_font.render_to(surface, (0, 90), " press q to close.", (255, 0, 255))
+                
+                if is_sigma_sfx_playing == False:
+                    mixer.music.load("sigma_sfx.mp3")
+                    mixer.music.play()
+                    is_sigma_sfx_playing = True
+                
+                #pygame.quit()
+
+            if event.key == pygame.K_q:
                 pygame.quit()
-
-            # if event.key == pygame.K_q:
-            #     pygame.quit()
-
-
-
