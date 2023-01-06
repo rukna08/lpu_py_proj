@@ -2,10 +2,17 @@ import pygame
 import pygame.freetype
 
 from pygame import gfxdraw
+from pygame import mixer
 
 import numpy as np
 
 pygame.init()
+
+mixer.init()
+
+mixer.music.load("click_sfx.mp3")
+
+mixer.music.set_volume(0.7)
 
 game_matrix = np.array(
     [
@@ -22,6 +29,8 @@ circle_wins = False
 cross_wins = False
 
 game_is_over = False
+
+is_snoop_dog_sfx_playing = False
 
 game_font = pygame.freetype.Font("Roboto-Regular.ttf", 24)
 
@@ -124,6 +133,8 @@ while running:
         if not game_is_over:
             if event.type == pygame.MOUSEBUTTONDOWN:
 
+                mixer.music.play()
+
                 # box 0
                 if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
                     if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
@@ -216,6 +227,11 @@ while running:
                 game_font.render_to(surface, (75, 100), "(Cross) X won!", (0, 255, 0))
 
             game_font.render_to(surface, (75, 70), "Escape to quit.", (255, 0, 0))
+
+            if is_snoop_dog_sfx_playing == False:
+                mixer.music.load("snoop_dog_sfx.mp3")
+                mixer.music.play()
+                is_snoop_dog_sfx_playing = True
 
         if event.type == pygame.QUIT:
             running = False
