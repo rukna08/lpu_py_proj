@@ -1,5 +1,28 @@
 import pygame
 
+from pygame import gfxdraw
+
+shape_index = 0
+
+def draw_circle(surface, radius, coord):
+    gfxdraw.aacircle(surface, coord[0], coord[1], radius, black_color)
+    gfxdraw.aacircle(surface, coord[0], coord[1], radius - 1, black_color)
+
+def draw_cross(coord):
+    cross_sprite = pygame.image.load("cross_sprite.png").convert_alpha()
+
+    surface.blit(cross_sprite, (coord[0] - 15, coord[1] - 15))
+
+def draw_shape(surface, radius, coord):
+    global shape_index
+    
+    if shape_index % 2 == 0:
+        draw_circle(surface, radius, coord)
+    else:
+        draw_cross(coord)
+    
+    shape_index += 1
+
 background_color = (255, 255, 255)
 
 black_color = (0, 0, 0)
@@ -31,7 +54,66 @@ while running:
     pygame.display.flip()
     
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            # box 0
+            if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
+                if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
+                    print("Inside box 0")
+
+                    draw_shape(surface, 22, (50, 50))
+
+            # box 1
+            if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
+                if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
+                    print("Inside box 1")
+
+                    draw_shape(surface, 22, (150, 50))
+
+            # box 2
+            if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
+                if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 100:
+                    print("Inside box 2")
+
+                    draw_shape(surface, 22, (250, 50))
+
+            # box 3
+            if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
+                if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
+                    print("Inside box 3")
+
+                    draw_shape(surface, 22, (50, 150))
+            # box 4
+            if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
+                if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
+                    print("Inside box 4")
+
+                    draw_shape(surface, 22, (150, 150))
+            # box 5
+            if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
+                if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
+                    print("Inside box 5")
+
+                    draw_shape(surface, 22, (250, 150))
+
+            # box 6
+            if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
+                if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
+                    print("Inside box 6")
+
+                    draw_shape(surface, 22, (50, 250))
+            # box 7
+            if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
+                if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
+                    print("Inside box 7")
+
+                    draw_shape(surface, 22, (150, 250))
+            # box 8
+            if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
+                if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
+                    print("Inside box 8")
+
+                    draw_shape(surface, 22, (250, 250))
 
         if event.type == pygame.QUIT:
-            
             running = False
