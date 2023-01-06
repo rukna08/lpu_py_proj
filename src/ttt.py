@@ -34,6 +34,8 @@ is_snoop_dog_sfx_playing = False
 
 is_sigma_sfx_playing = False
 
+is_player_pranked = False
+
 game_font = pygame.freetype.Font("Roboto-Regular.ttf", 24)
 
 def push_data_to_game_matrix(i, j):
@@ -219,21 +221,22 @@ while running:
 
                 check_game_win_condition()
 
-        if game_is_over:
+        if game_is_over and not is_player_pranked:
             surface.fill(background_color)
             game_font.render_to(surface, (35, 140), "#hardcoding4lyfbitch", (0, 0, 0))
 
-            if circle_wins == True:
-                game_font.render_to(surface, (75, 100), "(Circle) O won!", (0, 255, 0))
-            else:
-                game_font.render_to(surface, (75, 100), "(Cross) X won!", (0, 255, 0))
+            if not is_player_pranked:
+                if circle_wins == True:
+                    game_font.render_to(surface, (75, 100), "(Circle) O won!", (0, 255, 0))
+                else:
+                    game_font.render_to(surface, (75, 100), "(Cross) X won!", (0, 255, 0))
 
-            game_font.render_to(surface, (75, 70), "Escape to quit.", (255, 0, 0))
+                game_font.render_to(surface, (75, 70), "Escape to quit.", (255, 0, 0))
 
-            if is_snoop_dog_sfx_playing == False:
-                mixer.music.load("snoop_dog_sfx.mp3")
-                mixer.music.play()
-                is_snoop_dog_sfx_playing = True
+                if is_snoop_dog_sfx_playing == False:
+                    mixer.music.load("snoop_dog_sfx.mp3")
+                    mixer.music.play()
+                    is_snoop_dog_sfx_playing = True
 
         if event.type == pygame.QUIT:
             running = False
@@ -241,12 +244,13 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
+                is_player_pranked = True
                 surface.fill(black_color)
                 game_font.render_to(surface, (0, 70), "You have been pranked,", (255, 0, 255))
                 game_font.render_to(surface, (0, 90), " press q to close.", (255, 0, 255))
                 
                 if is_sigma_sfx_playing == False:
-                    mixer.music.load("sigma_sfx.mp3")
+                    mixer.music.load("sigmax_sfx.mp3")
                     mixer.music.play()
                     is_sigma_sfx_playing = True
                 
