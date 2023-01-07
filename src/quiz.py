@@ -237,11 +237,11 @@ while running:
 
                 if(box_selected[0]):
                     user_given_answers_array[question_index] = 1
-                if(box_selected[1]):
+                elif(box_selected[1]):
                     user_given_answers_array[question_index] = 2
-                if(box_selected[2]):
+                elif(box_selected[2]):
                     user_given_answers_array[question_index] = 3
-                if(box_selected[3]):
+                elif(box_selected[3]):
                     user_given_answers_array[question_index] = 4
 
                 print(user_given_answers_array)
