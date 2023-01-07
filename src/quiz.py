@@ -32,6 +32,10 @@ def display_options(surface, options_index):
     quiz_font.render_to(surface, (50, 200), options_array[options_index + 2], (0, 0, 0))
     quiz_font.render_to(surface, (50, 250), options_array[options_index + 3], (0, 0, 0))
 
+def remove_newline_from_string_array(arr):
+    for i in range(len(arr)):
+        arr[i] = arr[i].strip()
+
 questions_array = []
 options_array = []
 
@@ -40,6 +44,9 @@ with open("res/questions.txt") as questions_txtfile:
 
 with open("res/options.txt") as options_txtfile:
     options_array = options_txtfile.readlines()
+
+remove_newline_from_string_array(questions_array)
+remove_newline_from_string_array(options_array)
 
 white_colour = (255, 255, 255)
 
