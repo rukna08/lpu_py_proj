@@ -5,11 +5,14 @@ pygame.init()
 pygame.font.init()
 
 quiz_font = pygame.freetype.Font('res/Roboto-Regular.ttf', 27)
+game_over_font = pygame.freetype.Font('res/Roboto-Regular.ttf', 50)
 
 b1color = (0, 0, 0)
 b2color = (0, 0, 0)
 b3color = (0, 0, 0)
 b4color = (0, 0, 0)
+
+score = 0
 
 b1f = 1
 b2f = 1
@@ -100,6 +103,11 @@ is_quiz_over = False
 
 while running:
     surface.fill(white_color)
+
+    if is_quiz_over:
+        game_over_font.render_to(surface, (500, 200), "Score: {}".format(score), (0, 0, 0))
+        game_over_font.render_to(surface, (400, 350), "Press ESC to quit", (0, 0, 0))
+
 
     if not is_quiz_over:
 
@@ -277,7 +285,6 @@ while running:
             if mouse_x >= 900 and mouse_x <= 1010 and mouse_y >= 400 and mouse_y <= 450:
                 print("Submit button pressed")
 
-                score = 0
                 for i in range(len(answers_array)):
                     if answers_array[i] == user_given_answers_array[i]:
                         score += 1
