@@ -268,4 +268,8 @@ while running:
                     user_given_answers_array[question_index] = 4
 
                 print(user_given_answers_array)
+
+            # submit button pressed
+            if mouse_x >= 900 and mouse_x <= 1010 and mouse_y >= 400 and mouse_y <= 450:
+                print("Submit button pressed")
                 
