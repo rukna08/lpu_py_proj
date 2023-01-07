@@ -15,17 +15,6 @@ def display_options_num(surface):
     quiz_font.render_to(surface, (20, 200), "3.  ", (0, 0, 0))
     quiz_font.render_to(surface, (20, 250), "4.  ", (0, 0, 0))
 
-# def preprocess_string(string, index) -> str:
-#     new_string = ""
-#     for i, letter in enumerate(string):
-#         if i % 20 == 0:
-#             new_string += '\n'
-#         new_string += letter
-
-#     new_string = new_string[1:]
-
-#     questions_array[index] = new_string
-
 def display_options(surface, options_index):
     quiz_font.render_to(surface, (50, 100), options_array[options_index], (0, 0, 0))
     quiz_font.render_to(surface, (50, 150), options_array[options_index + 1], (0, 0, 0))
@@ -62,9 +51,6 @@ running = True
 
 question_index = 0
 options_index = 0
-
-# for i in range(len(questions_array)):
-#     preprocess_string(questions_array[i], i)
 
 while running:
     surface.fill(white_colour)
