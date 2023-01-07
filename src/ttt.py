@@ -36,6 +36,12 @@ is_sigma_sfx_playing = False
 
 is_player_pranked = False
 
+box_filled_array = [
+    False, False, False, 
+    False, False, False, 
+    False, False, False
+]
+
 game_font = pygame.freetype.Font("Roboto-Regular.ttf", 24)
 
 def push_data_to_game_matrix(i, j):
@@ -56,16 +62,18 @@ def draw_cross(coord):
 
     surface.blit(cross_sprite, (coord[0] - 15, coord[1] - 15))
 
-def draw_shape(surface, radius, coord):
+def draw_shape(surface, radius, coord, shape_location_index):
     global shape_index
     
-    if shape_index % 2 == 0:
-        draw_circle(surface, radius, coord)
+    if(not box_filled_array[shape_location_index]):
+        if shape_index % 2 == 0:
+            draw_circle(surface, radius, coord)
+        else:
+            draw_cross(coord)
+        
+        shape_index += 1
 
-    else:
-        draw_cross(coord)
-    
-    shape_index += 1
+        box_filled_array[shape_location_index] = True
 
 def check_game_win_condition():
     global game_is_over
@@ -149,7 +157,7 @@ while running:
 
                         push_data_to_game_matrix(0, 0)
                     
-                        draw_shape(surface, 22, (50, 50))
+                        draw_shape(surface, 22, (50, 50), 0)
 
                 # box 1
                 if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
@@ -158,7 +166,7 @@ while running:
 
                         push_data_to_game_matrix(0, 1)
 
-                        draw_shape(surface, 22, (150, 50))
+                        draw_shape(surface, 22, (150, 50), 1)
 
                 # box 2
                 if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
@@ -167,7 +175,7 @@ while running:
 
                         push_data_to_game_matrix(0, 2)
 
-                        draw_shape(surface, 22, (250, 50))
+                        draw_shape(surface, 22, (250, 50), 2)
 
                 # box 3
                 if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
@@ -176,7 +184,7 @@ while running:
 
                         push_data_to_game_matrix(1, 0)
 
-                        draw_shape(surface, 22, (50, 150))
+                        draw_shape(surface, 22, (50, 150), 3)
                 # box 4
                 if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
                     if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
@@ -184,7 +192,7 @@ while running:
 
                         push_data_to_game_matrix(1, 1)
 
-                        draw_shape(surface, 22, (150, 150))
+                        draw_shape(surface, 22, (150, 150), 4)
                 # box 5
                 if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
                     if pygame.mouse.get_pos()[1] >= 100 and pygame.mouse.get_pos()[1] <= 200:
@@ -192,7 +200,7 @@ while running:
 
                         push_data_to_game_matrix(1, 2)
 
-                        draw_shape(surface, 22, (250, 150))
+                        draw_shape(surface, 22, (250, 150), 5)
 
                 # box 6
                 if pygame.mouse.get_pos()[0] >= 0 and pygame.mouse.get_pos()[0] <= 100:
@@ -201,7 +209,7 @@ while running:
 
                         push_data_to_game_matrix(2, 0)
 
-                        draw_shape(surface, 22, (50, 250))
+                        draw_shape(surface, 22, (50, 250), 6)
                 # box 7
                 if pygame.mouse.get_pos()[0] >= 100 and pygame.mouse.get_pos()[0] <= 200:
                     if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
@@ -209,7 +217,7 @@ while running:
 
                         push_data_to_game_matrix(2, 1)
 
-                        draw_shape(surface, 22, (150, 250))
+                        draw_shape(surface, 22, (150, 250), 7)
                 # box 8
                 if pygame.mouse.get_pos()[0] >= 200 and pygame.mouse.get_pos()[0] <= 300:
                     if pygame.mouse.get_pos()[1] >= 200 and pygame.mouse.get_pos()[1] <= 300:
@@ -217,7 +225,7 @@ while running:
 
                         push_data_to_game_matrix(2, 2)
 
-                        draw_shape(surface, 22, (250, 250))
+                        draw_shape(surface, 22, (250, 250), 8)
 
                 check_game_win_condition()
 
@@ -253,8 +261,6 @@ while running:
                     mixer.music.load("sigmax_sfx.mp3")
                     mixer.music.play()
                     is_sigma_sfx_playing = True
-                
-                #pygame.quit()
 
             if event.key == pygame.K_q:
                 pygame.quit()
