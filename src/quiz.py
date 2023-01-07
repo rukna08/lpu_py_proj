@@ -6,10 +6,10 @@ pygame.font.init()
 
 quiz_font = pygame.freetype.Font('res/Roboto-Regular.ttf', 27)
 
-def display_question(surface, question_index, coordinate):
-    quiz_font.render_to(surface, coordinate, questions_array[question_index], (0, 0, 0))
+def display_question(surface, question_index):
+    quiz_font.render_to(surface, (20, 20), questions_array[question_index], (0, 0, 0))
 
-def display_options(surface):
+def display_options_num(surface):
     quiz_font.render_to(surface, (20, 100), "1.  ", (0, 0, 0))
     quiz_font.render_to(surface, (20, 150), "2.  ", (0, 0, 0))
     quiz_font.render_to(surface, (20, 200), "3.  ", (0, 0, 0))
@@ -26,11 +26,20 @@ def display_options(surface):
 
 #     questions_array[index] = new_string
 
+def display_options(surface, options_index):
+    quiz_font.render_to(surface, (50, 100), options_array[options_index], (0, 0, 0))
+    quiz_font.render_to(surface, (50, 150), options_array[options_index + 1], (0, 0, 0))
+    quiz_font.render_to(surface, (50, 200), options_array[options_index + 2], (0, 0, 0))
+    quiz_font.render_to(surface, (50, 250), options_array[options_index + 3], (0, 0, 0))
+
 questions_array = []
 options_array = []
 
 with open("res/questions.txt") as questions_txtfile:
     questions_array = questions_txtfile.readlines()
+
+with open("res/options.txt") as options_txtfile:
+    options_array = options_txtfile.readlines()
 
 white_colour = (255, 255, 255)
 
@@ -45,6 +54,7 @@ pygame.display.set_caption("Quiz")
 running = True
 
 question_index = 0
+options_index = 0
 
 # for i in range(len(questions_array)):
 #     preprocess_string(questions_array[i], i)
@@ -52,10 +62,12 @@ question_index = 0
 while running:
     surface.fill(white_colour)
 
-    display_question(surface, question_index, (20, 20))
+    display_question(surface, question_index)
 
-    display_options(surface)
+    display_options_num(surface)
     
+    display_options(surface, options_index)
+
     pygame.display.flip()
 
     for event in pygame.event.get():
@@ -66,7 +78,9 @@ while running:
             if event.key == pygame.K_RIGHT:
                 if question_index + 1 != len(questions_array):
                     question_index += 1
+                    options_index += 4
 
             if event.key == pygame.K_LEFT:
                 if question_index - 1 != -1:
                     question_index -= 1
+                    options_index -= 4
