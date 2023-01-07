@@ -70,6 +70,7 @@ running = True
 
 question_index = 0
 options_index = 0
+answers_index = 0
 
 while running:
     surface.fill(white_color)
@@ -93,11 +94,13 @@ while running:
                 if question_index + 1 != len(questions_array):
                     question_index += 1
                     options_index += 4
+                    answers_index += 1
 
             if event.key == pygame.K_LEFT:
                 if question_index - 1 != -1:
                     question_index -= 1
                     options_index -= 4
+                    answers_index -= 1
 
             if event.key == pygame.K_ESCAPE:
                 running = False
