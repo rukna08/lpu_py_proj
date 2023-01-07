@@ -93,4 +93,4 @@ while running:
                     options_index -= 4
 
             if event.key == pygame.K_ESCAPE:
-                pygame.quit()
+                running = False
