@@ -89,3 +89,24 @@ while running:
 
             if event.key == pygame.K_ESCAPE:
                 running = False
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x = pygame.mouse.get_pos()[0]
+            mouse_y = pygame.mouse.get_pos()[1]
+
+            # box 1
+            if mouse_x >= 15 and mouse_x <= 35:
+                if mouse_y >= 100 and mouse_y <= 120:
+                    print("checkbox 1 clicked!")
+            # box 2
+            if mouse_x >= 15 and mouse_x <= 35:
+                if mouse_y >= 150 and mouse_y <= 170:
+                    print("checkbox 2 clicked!")
+            # box 3
+            if mouse_x >= 15 and mouse_x <= 35:
+                if mouse_y >= 200 and mouse_y <= 220:
+                    print("checkbox 3 clicked!")
+            # box 4
+            if mouse_x >= 15 and mouse_x <= 35:
+                if mouse_y >= 250 and mouse_y <= 270:
+                    print("checkbox 4 clicked!")
