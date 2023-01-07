@@ -15,7 +15,19 @@ def display_options(surface):
     quiz_font.render_to(surface, (20, 200), "3.  ", (0, 0, 0))
     quiz_font.render_to(surface, (20, 250), "4.  ", (0, 0, 0))
 
+# def preprocess_string(string, index) -> str:
+#     new_string = ""
+#     for i, letter in enumerate(string):
+#         if i % 20 == 0:
+#             new_string += '\n'
+#         new_string += letter
+
+#     new_string = new_string[1:]
+
+#     questions_array[index] = new_string
+
 questions_array = []
+options_array = []
 
 with open("res/questions.txt") as questions_txtfile:
     questions_array = questions_txtfile.readlines()
@@ -33,6 +45,9 @@ pygame.display.set_caption("Quiz")
 running = True
 
 question_index = 0
+
+# for i in range(len(questions_array)):
+#     preprocess_string(questions_array[i], i)
 
 while running:
     surface.fill(white_colour)
