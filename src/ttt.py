@@ -10,7 +10,7 @@ pygame.init()
 
 mixer.init()
 
-mixer.music.load("click_sfx.mp3")
+mixer.music.load("res/click_sfx.mp3")
 
 mixer.music.set_volume(0.7)
 
@@ -42,7 +42,7 @@ box_filled_array = [
     False, False, False
 ]
 
-game_font = pygame.freetype.Font("Roboto-Regular.ttf", 24)
+game_font = pygame.freetype.Font("res/Roboto-Regular.ttf", 24)
 
 def push_data_to_game_matrix(i, j):
     if game_matrix[i][j] == 0:
@@ -58,7 +58,7 @@ def draw_circle(surface, radius, coord):
     gfxdraw.aacircle(surface, coord[0], coord[1], radius - 1, black_color)
 
 def draw_cross(coord):
-    cross_sprite = pygame.image.load("cross_sprite.png").convert_alpha()
+    cross_sprite = pygame.image.load("res/cross_sprite.png").convert_alpha()
 
     surface.blit(cross_sprite, (coord[0] - 15, coord[1] - 15))
 
@@ -242,7 +242,7 @@ while running:
                 game_font.render_to(surface, (75, 70), "Escape to quit.", (255, 0, 0))
 
                 if is_snoop_dog_sfx_playing == False:
-                    mixer.music.load("snoop_dog_sfx.mp3")
+                    mixer.music.load("res/snoop_dog_sfx.mp3")
                     mixer.music.play()
                     is_snoop_dog_sfx_playing = True
 
@@ -258,7 +258,7 @@ while running:
                 game_font.render_to(surface, (60, 140), "Press q to close.", (255, 0, 255))
                 
                 if is_sigma_sfx_playing == False:
-                    mixer.music.load("sigmax_sfx.mp3")
+                    mixer.music.load("res/sigmax_sfx.mp3")
                     mixer.music.play()
                     is_sigma_sfx_playing = True
 

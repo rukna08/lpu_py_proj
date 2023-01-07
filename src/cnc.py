@@ -15,7 +15,7 @@ center_y = int(screen_height / 2 - window_height / 2)
 root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 root.resizable(False, False)
 root.maxsize(window_width, window_height)
-root.iconbitmap('baby_icon.ico')
+root.iconbitmap('res/baby_icon.ico')
 
 def print_calories(cal):
     cal_label = Label(root, text = "Intake " + str(cal) + " cal per day", fg = "green", font = ("Roboto", 16))
