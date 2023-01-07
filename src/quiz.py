@@ -16,6 +16,8 @@ b2f = 1
 b3f = 1
 b4f = 1
 
+box_selected = [False, False, False, False]
+
 def display_question(surface, question_index):
     quiz_font.render_to(surface, (20, 20), questions_array[question_index], (0, 0, 0))
 
@@ -117,6 +119,13 @@ while running:
                     b2f = 1
                     b3f = 1
                     b4f = 1
+
+                    box_selected[0] = True
+                    box_selected[1] = False
+                    box_selected[2] = False
+                    box_selected[3] = False
+
+                    print(box_selected)
             # box 2
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 150 and mouse_y <= 170:
@@ -130,6 +139,13 @@ while running:
                     b2f = 0
                     b3f = 1
                     b4f = 1
+
+                    box_selected[0] = False
+                    box_selected[1] = True
+                    box_selected[2] = False
+                    box_selected[3] = False
+
+                    print(box_selected)
             # box 3
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 200 and mouse_y <= 220:
@@ -143,6 +159,13 @@ while running:
                     b2f = 1
                     b3f = 0
                     b4f = 1
+
+                    box_selected[0] = False
+                    box_selected[1] = False
+                    box_selected[2] = True
+                    box_selected[3] = False
+
+                    print(box_selected)
             # box 4
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 250 and mouse_y <= 270:
@@ -156,3 +179,10 @@ while running:
                     b2f = 1
                     b3f = 1
                     b4f = 0
+
+                    box_selected[0] = False
+                    box_selected[1] = False
+                    box_selected[2] = False
+                    box_selected[3] = True
+
+                    print(box_selected)
