@@ -31,7 +31,7 @@ def remove_newline_from_string_array(arr):
         arr[i] = arr[i].strip()
 
 def draw_tickbox(surface):
-    pygame.draw.rect(surface, b1color, (15, 100, 20, 20), 2)
+    pygame.draw.rect(surface, b1color, (15, 100, 20, 20), 1)
     pygame.draw.rect(surface, b2color, (15, 150, 20, 20), 1)
     pygame.draw.rect(surface, b3color, (15, 200, 20, 20), 1)
     pygame.draw.rect(surface, b4color, (15, 250, 20, 20), 1)
