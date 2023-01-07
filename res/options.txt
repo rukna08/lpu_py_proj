@@ -14,3 +14,7 @@ Pegasus
 Pegassi
 Leo
 Moon
+United Kingdom
+United States Of America
+Italy
+China
