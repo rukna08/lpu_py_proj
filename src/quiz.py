@@ -11,6 +11,11 @@ b2color = (0, 0, 0)
 b3color = (0, 0, 0)
 b4color = (0, 0, 0)
 
+b1f = 1
+b2f = 1
+b3f = 1
+b4f = 1
+
 def display_question(surface, question_index):
     quiz_font.render_to(surface, (20, 20), questions_array[question_index], (0, 0, 0))
 
@@ -31,10 +36,10 @@ def remove_newline_from_string_array(arr):
         arr[i] = arr[i].strip()
 
 def draw_tickbox(surface):
-    pygame.draw.rect(surface, b1color, (15, 100, 20, 20), 1)
-    pygame.draw.rect(surface, b2color, (15, 150, 20, 20), 1)
-    pygame.draw.rect(surface, b3color, (15, 200, 20, 20), 1)
-    pygame.draw.rect(surface, b4color, (15, 250, 20, 20), 1)
+    pygame.draw.rect(surface, b1color, (15, 100, 20, 20), b1f)
+    pygame.draw.rect(surface, b2color, (15, 150, 20, 20), b2f)
+    pygame.draw.rect(surface, b3color, (15, 200, 20, 20), b3f)
+    pygame.draw.rect(surface, b4color, (15, 250, 20, 20), b4f)
 
 questions_array = []
 options_array = []
@@ -107,6 +112,11 @@ while running:
                     b2color = (0, 0, 0)
                     b3color = (0, 0, 0)
                     b4color = (0, 0, 0)
+
+                    b1f = 0
+                    b2f = 1
+                    b3f = 1
+                    b4f = 1
             # box 2
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 150 and mouse_y <= 170:
@@ -115,6 +125,11 @@ while running:
                     b1color = (0, 0, 0)
                     b3color = (0, 0, 0)
                     b4color = (0, 0, 0)
+
+                    b1f = 1
+                    b2f = 0
+                    b3f = 1
+                    b4f = 1
             # box 3
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 200 and mouse_y <= 220:
@@ -123,6 +138,11 @@ while running:
                     b1color = (0, 0, 0)
                     b2color = (0, 0, 0)
                     b4color = (0, 0, 0)
+
+                    b1f = 1
+                    b2f = 1
+                    b3f = 0
+                    b4f = 1
             # box 4
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 250 and mouse_y <= 270:
@@ -131,3 +151,8 @@ while running:
                     b1color = (0, 0, 0)
                     b2color = (0, 0, 0)
                     b3color = (0, 0, 0)
+
+                    b1f = 1
+                    b2f = 1
+                    b3f = 1
+                    b4f = 0
