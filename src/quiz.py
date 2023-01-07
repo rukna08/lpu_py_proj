@@ -59,6 +59,8 @@ with open("res/questions.txt") as questions_txtfile:
 with open("res/options.txt") as options_txtfile:
     options_array = options_txtfile.readlines()
 
+user_given_answers_array = [None] * len(questions_array)
+
 remove_newline_from_string_array(questions_array)
 remove_newline_from_string_array(options_array)
 
@@ -228,4 +230,19 @@ while running:
                     box_selected[3] = True
 
                     print(box_selected)
+
+            # save button pressed
+            if mouse_x >= 1100 and mouse_x <= 1190 and mouse_y >= 400 and mouse_y <= 450:
+                print("Save button pressed")
+
+                if(box_selected[0]):
+                    user_given_answers_array[question_index] = 1
+                if(box_selected[1]):
+                    user_given_answers_array[question_index] = 2
+                if(box_selected[2]):
+                    user_given_answers_array[question_index] = 3
+                if(box_selected[3]):
+                    user_given_answers_array[question_index] = 4
+
+                print(user_given_answers_array)
                 
