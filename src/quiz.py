@@ -148,9 +148,6 @@ while running:
                 running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # mouse_x = pygame.mouse.get_pos()[0]
-            # mouse_y = pygame.mouse.get_pos()[1]
-
             # box 1
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 100 and mouse_y <= 120:
