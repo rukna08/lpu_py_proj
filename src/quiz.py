@@ -96,20 +96,24 @@ question_index = 0
 options_index  = 0
 answers_index  = 0
 
+is_quiz_over = False
+
 while running:
     surface.fill(white_color)
 
-    display_question(surface, question_index)
+    if not is_quiz_over:
 
-    display_options_num(surface)
-    
-    display_options(surface, options_index)
+        display_question(surface, question_index)
 
-    draw_tickbox(surface)
+        display_options_num(surface)
 
-    draw_savebutton(surface)
+        display_options(surface, options_index)
 
-    draw_submitbutton(surface)
+        draw_tickbox(surface)
+
+        draw_savebutton(surface)
+
+        draw_submitbutton(surface)
 
     pygame.display.flip()
 
@@ -279,4 +283,5 @@ while running:
                         score += 1
 
                 print("Score: {}".format(score))
-                
+
+                is_quiz_over = True
