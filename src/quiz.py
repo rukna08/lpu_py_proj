@@ -19,6 +19,7 @@ b4f = 1
 box_selected = [False, False, False, False]
 
 save_button_filled = 1
+submit_button_filled = 1
 
 def display_question(surface, question_index):
     quiz_font.render_to(surface, (20, 20), questions_array[question_index], (0, 0, 0))
@@ -48,6 +49,10 @@ def draw_tickbox(surface):
 def draw_savebutton(surface):
     pygame.draw.rect(surface, (0, 255, 0), (1100, 400, 80, 50), save_button_filled)
     quiz_font.render_to(surface, (1107, 415), "SAVE", (0, 0, 0))
+
+def draw_submitbutton(surface):
+    pygame.draw.rect(surface, (0, 255, 0), (900, 400, 110, 50), submit_button_filled)
+    quiz_font.render_to(surface, (907, 415), "SUBMIT", (0, 0, 0))
 
 
 questions_array = []
@@ -104,6 +109,8 @@ while running:
 
     draw_savebutton(surface)
 
+    draw_submitbutton(surface)
+
     pygame.display.flip()
 
     mouse_x = pygame.mouse.get_pos()[0]
@@ -114,6 +121,12 @@ while running:
         save_button_filled = 0
     else:
         save_button_filled = 1
+
+    # submit-button
+    if mouse_x >= 900 and mouse_x <= 1010 and mouse_y >= 400 and mouse_y <= 450:
+        submit_button_filled = 0
+    else:
+        submit_button_filled = 1
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
