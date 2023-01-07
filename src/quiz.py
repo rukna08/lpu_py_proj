@@ -6,6 +6,11 @@ pygame.font.init()
 
 quiz_font = pygame.freetype.Font('res/Roboto-Regular.ttf', 27)
 
+b1color = (0, 0, 0)
+b2color = (0, 0, 0)
+b3color = (0, 0, 0)
+b4color = (0, 0, 0)
+
 def display_question(surface, question_index):
     quiz_font.render_to(surface, (20, 20), questions_array[question_index], (0, 0, 0))
 
@@ -26,10 +31,10 @@ def remove_newline_from_string_array(arr):
         arr[i] = arr[i].strip()
 
 def draw_tickbox(surface):
-    pygame.draw.rect(surface, black_color, (15, 100, 20, 20), 1)
-    pygame.draw.rect(surface, black_color, (15, 150, 20, 20), 1)
-    pygame.draw.rect(surface, black_color, (15, 200, 20, 20), 1)
-    pygame.draw.rect(surface, black_color, (15, 250, 20, 20), 1)
+    pygame.draw.rect(surface, b1color, (15, 100, 20, 20), 1)
+    pygame.draw.rect(surface, b2color, (15, 150, 20, 20), 1)
+    pygame.draw.rect(surface, b3color, (15, 200, 20, 20), 1)
+    pygame.draw.rect(surface, b4color, (15, 250, 20, 20), 1)
 
 questions_array = []
 options_array = []
@@ -98,15 +103,31 @@ while running:
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 100 and mouse_y <= 120:
                     print("checkbox 1 clicked!")
+                    b1color = (0, 255, 0)
+                    b2color = (0, 0, 0)
+                    b3color = (0, 0, 0)
+                    b4color = (0, 0, 0)
             # box 2
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 150 and mouse_y <= 170:
                     print("checkbox 2 clicked!")
+                    b2color = (0, 255, 0)
+                    b1color = (0, 0, 0)
+                    b3color = (0, 0, 0)
+                    b4color = (0, 0, 0)
             # box 3
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 200 and mouse_y <= 220:
                     print("checkbox 3 clicked!")
+                    b3color = (0, 255, 0)
+                    b1color = (0, 0, 0)
+                    b2color = (0, 0, 0)
+                    b4color = (0, 0, 0)
             # box 4
             if mouse_x >= 15 and mouse_x <= 35:
                 if mouse_y >= 250 and mouse_y <= 270:
                     print("checkbox 4 clicked!")
+                    b4color = (0, 255, 0)
+                    b1color = (0, 0, 0)
+                    b2color = (0, 0, 0)
+                    b3color = (0, 0, 0)
