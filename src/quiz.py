@@ -51,7 +51,8 @@ def draw_savebutton(surface):
 
 
 questions_array = []
-options_array = []
+options_array   = []
+answers_array   = []
 
 with open("res/questions.txt") as questions_txtfile:
     questions_array = questions_txtfile.readlines()
@@ -59,17 +60,26 @@ with open("res/questions.txt") as questions_txtfile:
 with open("res/options.txt") as options_txtfile:
     options_array = options_txtfile.readlines()
 
-user_given_answers_array = [None] * len(questions_array)
+with open("res/answers.txt") as answers_txtfile:
+    answers_array = answers_txtfile.readlines()
 
 remove_newline_from_string_array(questions_array)
 remove_newline_from_string_array(options_array)
+remove_newline_from_string_array(answers_array)
+
+for i in range(len(answers_array)):
+    answers_array[i] = int(answers_array[i])
+
+print("Answer: {}".format(answers_array))
+
+user_given_answers_array = [None] * len(questions_array)
 
 white_color = (255, 255, 255)
 black_color = (0, 0, 0)
 
-width = 1200
+width   = 1200
 
-height = 500
+height  = 500
 
 surface = pygame.display.set_mode((width, height))
 
@@ -78,8 +88,8 @@ pygame.display.set_caption("Quiz")
 running = True
 
 question_index = 0
-options_index = 0
-answers_index = 0
+options_index  = 0
+answers_index  = 0
 
 while running:
     surface.fill(white_color)
