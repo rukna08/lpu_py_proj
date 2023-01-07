@@ -281,6 +281,22 @@ while running:
 
                 print(user_given_answers_array)
 
+                question_index += 1
+                options_index += 4
+                answers_index += 1
+
+                b1color = (0, 0, 0)
+                b2color = (0, 0, 0)
+                b3color = (0, 0, 0)
+                b4color = (0, 0, 0)
+
+                b1f = 1
+                b2f = 1
+                b3f = 1
+                b4f = 1
+
+                box_selected = [False, False, False, False]
+
             # submit button pressed
             if mouse_x >= 900 and mouse_x <= 1010 and mouse_y >= 400 and mouse_y <= 450:
                 print("Submit button pressed")
