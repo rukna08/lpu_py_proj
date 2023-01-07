@@ -43,6 +43,11 @@ def draw_tickbox(surface):
     pygame.draw.rect(surface, b3color, (15, 200, 20, 20), b3f)
     pygame.draw.rect(surface, b4color, (15, 250, 20, 20), b4f)
 
+def draw_savebutton(surface):
+    pygame.draw.rect(surface, (0, 255, 0), (1100, 400, 80, 50), 2)
+    quiz_font.render_to(surface, (1107, 415), "SAVE", (0, 0, 0))
+
+
 questions_array = []
 options_array = []
 
@@ -82,6 +87,8 @@ while running:
     display_options(surface, options_index)
 
     draw_tickbox(surface)
+
+    draw_savebutton(surface)
 
     pygame.display.flip()
 
