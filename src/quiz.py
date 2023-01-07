@@ -272,4 +272,11 @@ while running:
             # submit button pressed
             if mouse_x >= 900 and mouse_x <= 1010 and mouse_y >= 400 and mouse_y <= 450:
                 print("Submit button pressed")
+
+                score = 0
+                for i in range(len(answers_array)):
+                    if answers_array[i] == user_given_answers_array[i]:
+                        score += 1
+
+                print("Score: {}".format(score))
                 
