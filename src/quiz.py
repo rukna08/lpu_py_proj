@@ -91,3 +91,6 @@ while running:
                 if question_index - 1 != -1:
                     question_index -= 1
                     options_index -= 4
+
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
